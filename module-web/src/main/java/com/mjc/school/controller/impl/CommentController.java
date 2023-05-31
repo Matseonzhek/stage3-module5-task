@@ -49,7 +49,7 @@ public class CommentController implements BaseRestController<CommentDtoRequest, 
     @Override
     @ApiOperation(value = "View list of all comments", response = CollectionModel.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed page of comments"),
+            @ApiResponse(code = 200, message = "Successfully displayed page of comments"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -74,7 +74,7 @@ public class CommentController implements BaseRestController<CommentDtoRequest, 
     @GetMapping(value = "news/{id}/comments")
     @ApiOperation(value = "Get a comment by News ID", response = CommentDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed a comment"),
+            @ApiResponse(code = 200, message = "Successfully displayed a comment"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -89,7 +89,7 @@ public class CommentController implements BaseRestController<CommentDtoRequest, 
     @Override
     @ApiOperation(value = "Get an comment by ID", response = CommentDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed a comment"),
+            @ApiResponse(code = 200, message = "Successfully displayed a comment"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -139,7 +139,7 @@ public class CommentController implements BaseRestController<CommentDtoRequest, 
     @Override
     @ApiOperation(value = "Update a comment", response = CommentDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully updated a comment"),
+            @ApiResponse(code = 200, message = "Successfully updated a comment"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),

@@ -50,7 +50,7 @@ public class NewsController implements BaseRestController<NewsDtoRequest, NewsDt
     @Override
     @ApiOperation(value = "View list of all news", response = CollectionModel.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed page of news"),
+            @ApiResponse(code = 200, message = "Successfully displayed page of news"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -77,7 +77,7 @@ public class NewsController implements BaseRestController<NewsDtoRequest, NewsDt
     @Override
     @ApiOperation(value = "Get news by ID", response = NewsDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed news"),
+            @ApiResponse(code = 200, message = "Successfully displayed news"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -129,7 +129,7 @@ public class NewsController implements BaseRestController<NewsDtoRequest, NewsDt
     @Override
     @ApiOperation(value = "Update news", response = NewsDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully updated news"),
+            @ApiResponse(code = 200, message = "Successfully updated news"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),

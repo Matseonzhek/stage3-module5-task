@@ -51,7 +51,7 @@ public class AuthorController implements BaseRestController<AuthorDtoRequest, Au
     @Override
     @ApiOperation(value = "View list of all authors", response = CollectionModel.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed page of authors"),
+            @ApiResponse(code = 200, message = "Successfully displayed page of authors"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -77,7 +77,7 @@ public class AuthorController implements BaseRestController<AuthorDtoRequest, Au
     @Override
     @ApiOperation(value = "Get an author by ID", response = AuthorDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed an author"),
+            @ApiResponse(code = 200, message = "Successfully displayed an author"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -92,7 +92,7 @@ public class AuthorController implements BaseRestController<AuthorDtoRequest, Au
     @GetMapping(value = "news/{id}/authors")
     @ApiOperation(value = "Get an author by News ID", response = AuthorDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully displayed an author"),
+            @ApiResponse(code = 200, message = "Successfully displayed an author"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
@@ -145,7 +145,7 @@ public class AuthorController implements BaseRestController<AuthorDtoRequest, Au
     @PatchMapping(value = "/{id}", consumes = "application/json-patch+json")
     @ApiOperation(value = "Update an author", response = AuthorDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully updated an author"),
+            @ApiResponse(code = 200, message = "Successfully updated an author"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
