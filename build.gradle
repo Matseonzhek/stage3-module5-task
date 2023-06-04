@@ -26,15 +26,12 @@ subprojects {
         implementation "org.aspectj:aspectjweaver:$aspectVersion"
         implementation "org.springframework.boot:spring-boot-starter-data-jpa:$jpaVersion"
         implementation "org.postgresql:postgresql:$postgresVersion"
-//        implementation "org.hibernate:hibernate-entitymanager:6.0.0.Alpha7"
         implementation "org.springframework.boot:spring-boot-starter-web:$MvcVersion"
         implementation "org.springframework.boot:spring-boot-starter-hateoas:$MvcVersion"
         implementation 'com.github.java-json-tools:json-patch:1.13'
         implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'
         implementation 'org.hibernate:hibernate-validator:6.0.18.Final'
         implementation 'io.springfox:springfox-boot-starter:3.0.0'
-
-
 
 
 //        testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.6'
