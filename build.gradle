@@ -34,8 +34,8 @@ subprojects {
         implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
 
-//        testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.6'
-        testImplementation "org.springframework:spring-test:$springVersion"
+        testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.6'
+//        testImplementation "org.springframework:spring-test:$springVersion"
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
         testImplementation "com.tngtech.archunit:archunit-junit5:$archUnitVersion"

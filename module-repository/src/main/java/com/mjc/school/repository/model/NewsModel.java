@@ -21,7 +21,7 @@ public class NewsModel implements BaseEntity<Long>, Serializable {
     private AuthorModel authorModel;
 
     @OneToMany(mappedBy = "newsModel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CommentModel> comments;
+    private List<CommentModel> comments = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "news_tag",
