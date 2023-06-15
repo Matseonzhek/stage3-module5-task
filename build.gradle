@@ -34,14 +34,17 @@ subprojects {
         implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
 
+        testImplementation 'io.rest-assured:rest-assured:5.3.0'
+        testImplementation 'io.rest-assured:json-path:5.3.0'
         testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.6'
 //        testImplementation "org.springframework:spring-test:$springVersion"
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
         testImplementation "com.tngtech.archunit:archunit-junit5:$archUnitVersion"
         testImplementation 'org.assertj:assertj-core:3.6.1'
-        testImplementation 'io.rest-assured:rest-assured:3.0.0'
+//        testImplementation 'io.rest-assured:rest-assured:3.0.0'
         testImplementation 'com.h2database:h2:2.1.214'
+
     }
     test {
         useJUnitPlatform()

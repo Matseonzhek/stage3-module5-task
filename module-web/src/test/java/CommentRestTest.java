@@ -1,4 +1,4 @@
-import com.mjc.school.service.dto.AuthorDtoRequest;
+import com.mjc.school.service.dto.CommentDtoRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -9,21 +9,21 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.given;
 
-public class AuthorRestTest {
+public class CommentRestTest {
 
     private final static String BASE_URI = "http://localhost";
-    private final static String BASE_PATH = "/authors";
-    private final static String PAGED_FIND_ALL = "?page=1&size=20&sortBy=id";
-    private final static String READ_BY_AUTHOR_ID = "/1";
-    private final static String READ_BY_NEWS_ID = "/news/2/authors";
-    private final static String CREATE_AUTHOR = "/create";
-    private final static String PATCH_AUTHOR = "/24";
-    private final static String DELETE_AUTHOR = "/3";
+    private final static String BASE_PATH = "/comments";
+    private final static String PAGED_FIND_ALL = "?page=0&size=5&sortBy=content";
+    private final static String READ_BY_COMMENT_ID = "/1";
+    private final static String READ_BY_NEWS_ID = "/news/1/comments";
+    private final static String CREATE_COMMENT = "/create";
+    private final static String PATCH_COMMENT = "/3";
+    private final static String DELETE_COMMENT = "/3";
 
 
     @LocalServerPort
     private final static int port = 8080;
-    private final static String BASE_AUTHOR_CONTROLLER_PATH = BASE_URI + ":" + port + BASE_PATH;
+    private final static String BASE_COMMENT_CONTROLLER_PATH = BASE_URI + ":" + port + BASE_PATH;
 
     @BeforeAll
     public static void setUp() {
@@ -32,74 +32,72 @@ public class AuthorRestTest {
         RestAssured.basePath = BASE_PATH;
     }
 
-
-
     @Test
-    public void findAllAuthorsControllerTest() {
+    public void findAllACommentsControllerTest() {
         Response response = given().contentType(ContentType.JSON)
-                .param("page", 1)
-                .param("size", 20)
-                .param("sortBy", "id")
-                .when().get(BASE_AUTHOR_CONTROLLER_PATH + PAGED_FIND_ALL)
+                .param("page", 0)
+                .param("size", 5)
+                .param("sortBy", "content")
+                .when().get(BASE_COMMENT_CONTROLLER_PATH + PAGED_FIND_ALL)
                 .then().extract().response();
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
-    public void readAuthorByIdControllerTest() {
+    public void readCommentByIdControllerTest() {
         Response response = given().contentType(ContentType.JSON)
                 .param("id", 1)
-                .when().get(BASE_AUTHOR_CONTROLLER_PATH + READ_BY_AUTHOR_ID)
+                .when().get(BASE_COMMENT_CONTROLLER_PATH + READ_BY_COMMENT_ID)
                 .then().extract().response();
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
-    public void readAuthorByNewsIdControllerTest() {
+    public void readCommentByNewsIdControllerTest() {
         Response response = given().contentType(ContentType.JSON)
-                .param("id", 2)
-                .when().get(BASE_AUTHOR_CONTROLLER_PATH + READ_BY_NEWS_ID)
+                .param("id", 1)
+                .when().get(BASE_COMMENT_CONTROLLER_PATH + READ_BY_NEWS_ID)
                 .then().extract().response();
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
-    public void createAuthorControllerTest() {
-        AuthorDtoRequest request = new AuthorDtoRequest(null,"Matseonzhek");
+    public void createCommentControllerTest() {
+        CommentDtoRequest request = new CommentDtoRequest(null, "comment", 1L);
         Response response = given().contentType("application/json")
                 .body(request)
-                .when().post(BASE_AUTHOR_CONTROLLER_PATH + CREATE_AUTHOR)
+                .when().post(BASE_COMMENT_CONTROLLER_PATH + CREATE_COMMENT)
                 .then()
                 .extract().response();
         Assertions.assertEquals(201, response.statusCode());
-        Assertions.assertEquals("Matseonzhek", response.jsonPath().getString("name"));
+        Assertions.assertEquals("comment", response.jsonPath().getString("content"));
     }
 
     @Test
-    public void patchAuthorControllerTest() {
+    public void patchCommentControllerTest() {
         String requestBody = "[" +
                 "  {" +
                 "    \"op\": \"replace\"," +
-                "    \"path\": \"/name\"," +
-                "    \"value\": \"Matseonzhek\"" +
+                "    \"path\": \"/content\"," +
+                "    \"value\": \"Patched content\"" +
                 "  }" +
                 "]";
 
         Response response = given().contentType("application/json-patch+json")
                 .body(requestBody)
                 .when()
-                .patch(BASE_AUTHOR_CONTROLLER_PATH + PATCH_AUTHOR)
+                .patch(BASE_COMMENT_CONTROLLER_PATH + PATCH_COMMENT)
                 .then()
                 .extract().response();
 
         Assertions.assertEquals(200, response.statusCode());
-        Assertions.assertEquals("Matseonzhek", response.jsonPath().getString("name"));
+        Assertions.assertEquals("Patched content", response.jsonPath().getString("content"));
     }
 
     @Test
-    public void deleteAuthorControllerTest() {
+    public void deleteCommentControllerTest() {
         Response response = given().when()
-                .delete(BASE_AUTHOR_CONTROLLER_PATH + DELETE_AUTHOR).then().extract().response();
+                .delete(BASE_COMMENT_CONTROLLER_PATH + DELETE_COMMENT).then().extract().response();
         Assertions.assertEquals(204, response.statusCode());
     }
 }

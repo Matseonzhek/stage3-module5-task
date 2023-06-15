@@ -142,7 +142,8 @@ public class AuthorController implements BaseRestController<AuthorDtoRequest, Au
         return new ResponseEntity<>(authorDtoResponse, HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/{id}", consumes = "application/json-patch+json")
+    @PatchMapping(value = "/{id}", consumes = "application/json-patch+json;odata=verbose",
+            produces = {"application/json", "application/xml;odata=verbose"})
     @ApiOperation(value = "Update an author", response = AuthorDtoResponse.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated an author"),

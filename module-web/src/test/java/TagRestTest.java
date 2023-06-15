@@ -1,4 +1,4 @@
-import com.mjc.school.service.dto.AuthorDtoRequest;
+import com.mjc.school.service.dto.TagDtoRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -9,21 +9,19 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.given;
 
-public class AuthorRestTest {
-
+public class TagRestTest {
     private final static String BASE_URI = "http://localhost";
-    private final static String BASE_PATH = "/authors";
-    private final static String PAGED_FIND_ALL = "?page=1&size=20&sortBy=id";
-    private final static String READ_BY_AUTHOR_ID = "/1";
-    private final static String READ_BY_NEWS_ID = "/news/2/authors";
-    private final static String CREATE_AUTHOR = "/create";
-    private final static String PATCH_AUTHOR = "/24";
-    private final static String DELETE_AUTHOR = "/3";
+    private final static String BASE_PATH = "/tags";
+    private final static String READ_BY_TAG_ID = "/1";
+    private final static String READ_BY_NEWS_ID = "/news/1/tags";
+    private final static String CREATE_TAG = "/create";
+    private final static String PATCH_TAG = "/3";
+    private final static String DELETE_TAG = "/4";
 
 
     @LocalServerPort
     private final static int port = 8080;
-    private final static String BASE_AUTHOR_CONTROLLER_PATH = BASE_URI + ":" + port + BASE_PATH;
+    private final static String BASE_TAG_CONTROLLER_PATH = BASE_URI + ":" + port + BASE_PATH;
 
     @BeforeAll
     public static void setUp() {
@@ -32,74 +30,70 @@ public class AuthorRestTest {
         RestAssured.basePath = BASE_PATH;
     }
 
-
-
     @Test
-    public void findAllAuthorsControllerTest() {
+    public void findAllTagsControllerTest() {
         Response response = given().contentType(ContentType.JSON)
-                .param("page", 1)
-                .param("size", 20)
-                .param("sortBy", "id")
-                .when().get(BASE_AUTHOR_CONTROLLER_PATH + PAGED_FIND_ALL)
+                .when().get(BASE_TAG_CONTROLLER_PATH)
                 .then().extract().response();
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
-    public void readAuthorByIdControllerTest() {
+    public void readTagByIdControllerTest() {
         Response response = given().contentType(ContentType.JSON)
                 .param("id", 1)
-                .when().get(BASE_AUTHOR_CONTROLLER_PATH + READ_BY_AUTHOR_ID)
+                .when().get(BASE_TAG_CONTROLLER_PATH + READ_BY_TAG_ID)
                 .then().extract().response();
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
-    public void readAuthorByNewsIdControllerTest() {
+    public void readTagByNewsIdControllerTest() {
         Response response = given().contentType(ContentType.JSON)
-                .param("id", 2)
-                .when().get(BASE_AUTHOR_CONTROLLER_PATH + READ_BY_NEWS_ID)
+                .param("id", 1)
+                .when().get(BASE_TAG_CONTROLLER_PATH + READ_BY_NEWS_ID)
                 .then().extract().response();
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
-    public void createAuthorControllerTest() {
-        AuthorDtoRequest request = new AuthorDtoRequest(null,"Matseonzhek");
+    public void createTagControllerTest() {
+        TagDtoRequest request = new TagDtoRequest(null, "created tag");
         Response response = given().contentType("application/json")
                 .body(request)
-                .when().post(BASE_AUTHOR_CONTROLLER_PATH + CREATE_AUTHOR)
+                .when().post(BASE_TAG_CONTROLLER_PATH + CREATE_TAG)
                 .then()
                 .extract().response();
         Assertions.assertEquals(201, response.statusCode());
-        Assertions.assertEquals("Matseonzhek", response.jsonPath().getString("name"));
+        Assertions.assertEquals("created tag", response.jsonPath().getString("name"));
     }
 
     @Test
-    public void patchAuthorControllerTest() {
+    public void patchTagControllerTest() {
         String requestBody = "[" +
                 "  {" +
                 "    \"op\": \"replace\"," +
                 "    \"path\": \"/name\"," +
-                "    \"value\": \"Matseonzhek\"" +
+                "    \"value\": \"Patched tag\"" +
                 "  }" +
                 "]";
 
         Response response = given().contentType("application/json-patch+json")
                 .body(requestBody)
                 .when()
-                .patch(BASE_AUTHOR_CONTROLLER_PATH + PATCH_AUTHOR)
+                .patch(BASE_TAG_CONTROLLER_PATH + PATCH_TAG)
                 .then()
                 .extract().response();
 
         Assertions.assertEquals(200, response.statusCode());
-        Assertions.assertEquals("Matseonzhek", response.jsonPath().getString("name"));
+        Assertions.assertEquals("Patched tag", response.jsonPath().getString("name"));
     }
 
     @Test
-    public void deleteAuthorControllerTest() {
+    public void deleteATagControllerTest() {
         Response response = given().when()
-                .delete(BASE_AUTHOR_CONTROLLER_PATH + DELETE_AUTHOR).then().extract().response();
+                .delete(BASE_TAG_CONTROLLER_PATH + DELETE_TAG).then().extract().response();
         Assertions.assertEquals(204, response.statusCode());
     }
+
 }
