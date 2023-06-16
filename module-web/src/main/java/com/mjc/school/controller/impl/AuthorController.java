@@ -154,7 +154,7 @@ public class AuthorController implements BaseRestController<AuthorDtoRequest, Au
     }
     )
     public ResponseEntity<AuthorDtoResponse> patch(
-            @PathVariable Long id,
+            @PathVariable @NotBlank Long id,
             @RequestBody JsonPatch patch) {
         try {
             AuthorDtoResponse authorDtoResponse = authorService.readById(id);

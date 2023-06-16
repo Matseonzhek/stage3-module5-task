@@ -20,7 +20,7 @@ public class TagRestTest {
 
 
     @LocalServerPort
-    private final static int port = 8080;
+    private final static int port = 8081;
     private final static String BASE_TAG_CONTROLLER_PATH = BASE_URI + ":" + port + BASE_PATH;
 
     @BeforeAll

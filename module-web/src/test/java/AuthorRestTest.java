@@ -17,12 +17,12 @@ public class AuthorRestTest {
     private final static String READ_BY_AUTHOR_ID = "/1";
     private final static String READ_BY_NEWS_ID = "/news/2/authors";
     private final static String CREATE_AUTHOR = "/create";
-    private final static String PATCH_AUTHOR = "/24";
+    private final static String PATCH_AUTHOR = "/1";
     private final static String DELETE_AUTHOR = "/3";
 
 
     @LocalServerPort
-    private final static int port = 8080;
+    private final static int port = 8081;
     private final static String BASE_AUTHOR_CONTROLLER_PATH = BASE_URI + ":" + port + BASE_PATH;
 
     @BeforeAll

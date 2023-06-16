@@ -17,12 +17,12 @@ public class CommentRestTest {
     private final static String READ_BY_COMMENT_ID = "/1";
     private final static String READ_BY_NEWS_ID = "/news/1/comments";
     private final static String CREATE_COMMENT = "/create";
-    private final static String PATCH_COMMENT = "/3";
+    private final static String PATCH_COMMENT = "/1";
     private final static String DELETE_COMMENT = "/3";
 
 
     @LocalServerPort
-    private final static int port = 8080;
+    private final static int port = 8081;
     private final static String BASE_COMMENT_CONTROLLER_PATH = BASE_URI + ":" + port + BASE_PATH;
 
     @BeforeAll

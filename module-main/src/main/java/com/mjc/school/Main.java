@@ -8,13 +8,18 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
+import java.util.Collections;
+
 
 @EntityScan(basePackageClasses = {Main.class, Jsr310JpaConverters.class})
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
 
-        SpringApplication.run(Main.class, args);
+        SpringApplication application = new SpringApplication(Main.class);
+        application.setDefaultProperties(Collections.singletonMap("server.port", "8081"));
+        application.run(args);
+//        SpringApplication.run(Main.class, args);
     }
 
     @Bean

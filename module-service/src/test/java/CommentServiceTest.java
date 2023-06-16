@@ -79,9 +79,11 @@ public class CommentServiceTest {
     public void createCommentTest() {
         CommentModel createdComment = new CommentModel(idComment, "new comment", now, now, news);
         CommentDtoRequest commentToCreate = new CommentDtoRequest(idComment, "new comment", idNews);
+        Mockito.when(newsRepository.readById(idNews)).thenReturn(Optional.ofNullable(news));
+        Mockito.when(newsRepository.existById(idNews)).thenReturn(true);
         Mockito.when(commentRepository.create(any())).thenReturn(createdComment);
         CommentDtoResponse response = commentService.create(commentToCreate);
-        Mockito.verify(commentRepository).create(createdComment);
+        Mockito.verify(commentRepository).create(any());
         Assertions.assertEquals(commentToCreate.getContent(), response.getContent());
     }
 

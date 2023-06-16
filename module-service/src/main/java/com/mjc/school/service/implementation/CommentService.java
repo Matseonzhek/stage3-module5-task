@@ -68,7 +68,7 @@ public class CommentService implements BaseService<CommentDtoRequest, CommentDto
         if (newsRepository.existById(createRequest.getNewsModelId())) {
             CommentModel commentModel = CommentMapper.INSTANCE.commentDtoRequestToCommentModel(createRequest);
             NewsModel newsModel = newsRepository.readById(createRequest.getNewsModelId()).get();
-            commentModel.setNewsModel(newsModel);
+//            commentModel.setNewsModel(newsModel);
             commentModel.setContent(createRequest.getContent());
             CommentModel createdCommentModel = commentRepository.create(commentModel);
             newsModel.addComment(createdCommentModel);
