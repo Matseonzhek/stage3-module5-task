@@ -1,5 +1,6 @@
 plugins {
     id 'java-base'
+    id 'war'
 }
 
 wrapper {
@@ -61,5 +62,10 @@ task repack(type: Jar, dependsOn: ':module-main:build') {
                     'Main-Class': 'com.mjc.school.Main'
             )
         }
+    }
+
+    war{
+        webAppDirectory = file("module-web/src/main")
+        from 'module-web/src'
     }
 }
