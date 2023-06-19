@@ -65,7 +65,7 @@ task repack(type: Jar, dependsOn: ':module-main:build') {
     }
 
     war{
-        webAppDirectory = file("module-web/src/main")
-        from 'module-web/src'
+        webAppDirectory = file("module-main/src/main")
+        from 'module-main/src'
     }
 }
