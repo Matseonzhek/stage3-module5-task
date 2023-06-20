@@ -1,3 +1,5 @@
+import com.sun.jdi.request.WatchpointRequest
+
 plugins {
     id 'java-base'
     id 'war'
@@ -10,6 +12,7 @@ wrapper {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
+    apply plugin: 'war'
     group = 'com.mjc.school'
 
     sourceCompatibility = javaVersion
@@ -66,8 +69,10 @@ task repack(type: Jar, dependsOn: ':module-main:build') {
     }
 
 }
-war {
-    repack
+
+task createWar (type: War, dependsOn: classes){
+
+
     baseName("module-main")
     from(zipTree("${project(':module-main').buildDir}/libs/module-main.jar"))
     into("/")
