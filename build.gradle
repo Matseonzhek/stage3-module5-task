@@ -67,6 +67,7 @@ task repack(type: Jar, dependsOn: ':module-main:build') {
 
 }
 war {
+    repack
     baseName("module-main")
     from(zipTree("${project(':module-main').buildDir}/libs/module-main.jar"))
     into("/")
